@@ -1,5 +1,5 @@
 name:                  runik
-version:               "0.3.X"
+version:               "0.1.X"
 author:                Olaf Michaelis <o.mic@web.de>
 about:                 Runik - An improved Uniq written in Rust
 args:
