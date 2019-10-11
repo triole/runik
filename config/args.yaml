@@ -1,0 +1,53 @@
+name:                  runik
+version:               "0.3.X"
+author:                Olaf Michaelis <o.mic@web.de>
+about:                 Runik - An improved Rust written Uniq
+args:
+    - input:
+        help:          input
+        value_name:    INPUT
+        required:      false
+        index:         1
+    - count:
+        short:         c
+        long:          count
+        help:          display duplicate count in output
+        takes_value:   false
+        multiple:      false
+        required:      false
+    - threshold:
+        short:         t
+        long:          threshold
+        help:          duplicate thresold, only print entries occuring at least x times
+        value_name:    INTEGER
+        default_value: "0"
+        takes_value:   true
+        required:      false
+        multiple:      false
+    - max_items:
+        short:         m
+        long:          max_items
+        help:          maximum number of items to return
+        value_name:    INTEGER
+        default_value: "0"
+        takes_value:   true
+        required:      false
+        multiple:      false
+    - sort_by:
+        short:         s
+        long:          sort_by
+        help:          sort output by 'c' count, 'k' key, 'n' none
+        value_name:    STRING
+        default_value: "c"
+        takes_value:   true
+        required:      false
+        multiple:      false
+    - separator:
+        short:         e
+        long:          separator
+        help:          separator character between count and string
+        value_name:    STRING
+        default_value: "\t"
+        takes_value:   true
+        required:      false
+        multiple:      false
