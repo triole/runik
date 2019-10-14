@@ -4,3 +4,4 @@ Cargo.lock
 build/
 target/
 src/args.yaml
+.cargo
