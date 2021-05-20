@@ -1,0 +1,47 @@
+version: '3'
+
+vars:
+    CURDIR:
+        sh: pwd
+
+    APP_NAME:
+        sh: cat Cargo.toml | grep -Po "(?<=name\s=\s\")[a-zA-Z0-9-_]+"
+
+    TARGET: x86_64-unknown-linux-gnu
+
+    TARGET_FOLDER: build
+
+    COMMIT_NO:
+        sh: git rev-list --all --count
+
+tasks:
+    default:
+        cmds:
+            - task: prep
+            - task: test
+            - task: build
+
+    prep:
+        cmds:
+            - cmd: mkdir -p {{.TARGET_FOLDER}}
+            - cmd: mkdir -p target/debug
+            - cmd: rustup target add x86_64-unknown-linux-musl
+
+    build:
+        sources:
+            - src/*.rs
+        method: timestamp
+        cmds:
+            - cmd: mkdir -p target/{{.TARGET}}/release/
+            - cmd: cargo build --release
+            - cmd: cp target/{{.target}}/release/{{.APP_NAME}}* build/
+            - cmd: rm build/{{.APP_NAME}}.d
+
+    test:
+        cmds:
+            - cmd: cargo test
+
+    run:
+        cmds:
+            - task: prep
+            - cmd: cargo run
