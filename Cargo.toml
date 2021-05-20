@@ -9,10 +9,10 @@ hashbrown = {version = "0.6.1", features = ["rayon"]}
 rayon = "1.2.0"
 signal-hook = "0.1.10"
 structopt = "0.3.2"
-olib_argparse = { path = "/home/ole/rolling/rust/libraries/olib/argparse" }
 serde_yaml = "0.8"
 serde_derive = "1.0"
 clap = {version = "2.32", features = ["yaml"]}
+yaml-rust = { version = "0.3.5"}
 
 [dev-dependencies]
 assert_cmd = "0.11.1"

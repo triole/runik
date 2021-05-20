@@ -1,4 +1,4 @@
-use olib_argparse::Argparse;
+use crate::argparse::Argparse;
 
 #[derive(Debug)]
 pub struct Config {
