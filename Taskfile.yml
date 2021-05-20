@@ -7,6 +7,9 @@ vars:
     APP_NAME:
         sh: cat Cargo.toml | grep -Po "(?<=name\s=\s\")[a-zA-Z0-9-_]+"
 
+    ARGS_SOURCE: config/args.yaml
+    ARGS_TARGET: .argsprod.yaml
+
     TARGET: x86_64-unknown-linux-gnu
 
     TARGET_FOLDER: build
@@ -23,6 +26,10 @@ tasks:
 
     prep:
         cmds:
+            - cmd: >-
+                cat "{{.ARGS_SOURCE}}"
+                | sed '/version/s/\.X\"/\.{{.COMMIT_NO}}\"/g'
+                > {{.ARGS_TARGET}}
             - cmd: mkdir -p {{.TARGET_FOLDER}}
             - cmd: mkdir -p target/debug
             - cmd: rustup target add x86_64-unknown-linux-musl
